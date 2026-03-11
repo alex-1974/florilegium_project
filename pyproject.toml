@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "florilegium"
+version = "0.1.0"
+description = "Scientific discovery and retrieval crawler"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "PyMuPDF",
+]
+
+[project.scripts]
+florilegium = "florilegium.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

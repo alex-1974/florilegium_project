@@ -1,0 +1,46 @@
+high_priority:
+  - historicengland.org.uk
+  - vernaculararchitecture.org
+  - archaeopress.com
+  - openarchive.llgc.org.uk
+  - denkmalpflege.lvr.de
+  - denkmalpflege-bw.de
+  - bauforschung-bw.de
+  - hausforschung.de
+  - uni-bamberg.de
+  - ub.uni-heidelberg.de
+  - publikationen.badw.de
+  - .ac.uk
+  - .edu
+  - .gov
+  - .de
+
+medium_priority:
+  - archive.org
+  - academia.edu
+  - researchgate.net
+  - zenodo.org
+  - core.ac.uk
+  - oapen.org
+  - hal.science
+  - persée.fr
+  - cairn.info
+  - .org
+
+blocked:
+  - facebook.com
+  - instagram.com
+  - linkedin.com
+  - pinterest.com
+  - x.com
+  - twitter.com
+  - youtube.com
+  - tiktok.com
+  - amazon.
+  - ebay.
+  - etsy.com
+  - reddit.com
+  - quora.com
+  - medium.com
+  - doubleclick.net
+  - googlesyndication.com

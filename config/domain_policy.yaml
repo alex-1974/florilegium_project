@@ -1,0 +1,173 @@
+thresholds:
+  gate: 0.30
+  review: 0.50
+  accept: 0.72
+  hard_reject_negative_matches: 3
+
+weights:
+  semantic_score: 0.30
+  context_score: 0.25
+  url_score: 0.15
+  scientific_score: 0.10
+  domain_score: 0.15
+  repository_score: 0.05
+  spam_risk: 0.05
+
+# WHY: Domain-level control was too coarse.
+# CONSTRAINT: The same university host may contain both excellent research PDFs and useless forms.
+# DEFERRED: Host lists should later be learned from audit feedback, not only hand-curated.
+
+positive_phrases:
+  - vernacular architecture
+  - vernacular building
+  - timber frame
+  - timber framed
+  - timber-framed
+  - fachwerk
+  - building archaeology
+  - architectural history
+  - construction history
+  - medieval domestic architecture
+  - historic buildings
+  - hall house
+  - open hall
+  - wealden
+  - cruck
+  - aisled
+  - rural house
+  - house history
+  - dendrochronology
+  - bauforschung
+  - hausforschung
+  - denkmalpflege
+  - denkmaltopographie
+  - historic environment
+  - vernacular
+
+negative_phrases:
+  - admission
+  - admissions
+  - application form
+  - application forms
+  - registration form
+  - registration forms
+  - anmeldungsformular
+  - anmeldeformular
+  - anmeldung
+  - bewerbung
+  - immatrikulation
+  - datenschutz
+  - dsgvo
+  - gdpr
+  - privacy notice
+  - privacy policy
+  - consent form
+  - release form
+  - waiver
+  - newsletter
+  - brochure
+  - flyer
+  - course
+  - teaching
+  - lecture
+  - lectures
+  - slides
+  - worksheet
+  - worksheet solutions
+  - exercise sheet
+  - syllabus
+  - module handbook
+  - student guide
+  - exam
+  - formular
+  - checklist
+  - event program
+  - press release
+  - tourism
+  - visitor guide
+  - menu
+  - invoice
+  - receipt
+  - terms and conditions
+  - annual report
+  - administrative report
+
+scientific_phrases:
+  - abstract
+  - references
+  - bibliography
+  - journal
+  - volume
+  - issue
+  - doi
+  - conference paper
+  - peer reviewed
+  - research article
+  - full text
+  - publication
+  - publications
+  - proceedings
+  - thesis
+  - dissertation
+  - monograph
+  - institute
+  - department of architecture
+  - school of architecture
+  - historical archaeology
+
+positive_path_fragments:
+  - /article/
+  - /download/
+  - /publication/
+  - /publications/
+  - /bitstream/
+  - /handle/
+  - /record/
+  - /items/
+  - /fulltext/
+  - /journal/
+  - /issue/
+
+negative_path_fragments:
+  - /course/
+  - /teaching/
+  - /slides/
+  - /events/
+  - /news/
+  - /apply/
+  - /admissions/
+  - /forms/
+  - /formulare/
+  - /dsgvo/
+  - /privacy/
+  - /wp-content/uploads/forms/
+  - /wp-content/uploads/anmeldung/
+  - /downloads/forms/
+
+boost_hosts:
+  journals.openedition.org: 0.18
+  archaeopress.com: 0.12
+  publications.archaeologydataservice.ac.uk: 0.20
+  eprints.whiterose.ac.uk: 0.12
+  orbilu.uni.lu: 0.10
+  repository.tudelft.nl: 0.10
+  discovery.ucl.ac.uk: 0.10
+
+penalty_hosts:
+  academia.edu: 0.20
+
+boost_domains:
+  doi.org: 0.10
+
+penalty_domains: {}
+
+repository_patterns:
+  - repository
+  - eprints
+  - openedition
+  - ojs
+  - jstor
+  - zenodo
+  - handle.net
+  - dspace
+  - bitstream

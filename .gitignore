@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.mypy_cache/
+var/cache/
+var/logs/
+var/data/
+var/downloads/

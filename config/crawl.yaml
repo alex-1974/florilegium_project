@@ -1,0 +1,66 @@
+search_engine: duckduckgo_html
+
+pause_seconds: 0.6
+timeout_seconds: 25
+retries: 3
+
+# Crawl limits
+max_depth: 3
+max_frontier_size: 15000
+max_pages_per_domain: 160
+max_pages_total: 3000
+
+# Search seeding
+max_search_results_per_query: 60
+max_html_pages_to_follow_per_query: 25
+
+follow_html_pages: true
+follow_only_high_scoring_html: true
+
+# scoring thresholds
+min_follow_score: 18
+min_verify_score: 6
+
+verify_pdf_magic_bytes: true
+
+# caching
+use_search_cache: true
+use_http_cache: true
+
+user_agent: "LiteraturePipelineBot/0.4 (+academic focused crawler)"
+
+# run behaviour
+reset_frontier_on_start: true
+force_requeue_seeds: true
+
+# semantic scoring
+semantic:
+  enable_bm25: true
+  enable_sbert: false
+  enable_keyword_extraction: false
+
+thresholds:
+  sbert_min_bm25: 1.8
+
+weights:
+  heuristic: 1.0
+  bm25: 0.8
+  sbert: 1.2
+
+# crawler behaviour tuning
+crawler:
+  max_links_per_page: 80
+  max_pdf_candidates_per_page: 12
+  skip_large_binary_mb: 20
+  max_redirects: 4
+
+# domain politeness
+politeness:
+  per_domain_delay: 0.4
+  max_parallel_domains: 6
+
+# logging
+logging:
+  enabled: true
+  level: debug
+  file: logs/step1_crawler.log
