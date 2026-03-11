@@ -1,0 +1,7 @@
+{
+  "input_urls": 2873,
+  "input_domains": 1085,
+  "filtered_urls": 709,
+  "filtered_domains": 120,
+  "rejected": 40
+}

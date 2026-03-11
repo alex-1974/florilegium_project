@@ -1,0 +1,115 @@
+strong_terms:
+  - fachwerk
+  - fachwerkbau
+  - hallenhaus
+  - hausforschung
+  - bauarchäologie
+  - mittelalterliches haus
+  - mittelalterlicher hausbau
+  - timber frame
+  - timber-framed
+  - vernacular architecture
+  - medieval house
+  - hall house
+  - cruck
+  - dendrochronology
+  - pan de bois
+  - colombage
+  - denkmaltopographie
+  - historic building
+  - building archaeology
+  - vernacular building
+  - publikationen
+  - fundberichte
+  - arbeitshefte
+  - onlinepublikationen
+  - jahrbücher
+  - zeitschrift
+  - topographien
+
+pdf_terms:
+  - pdf
+  - download
+  - full text
+  - fulltext
+  - bericht
+  - report
+  - article
+  - dissertation
+  - publication
+  - open access
+  - volltext
+  - bitstream
+  - preprint
+  - call for papers
+  - working paper
+
+negative_terms:
+  - login
+  - signup
+  - register
+  - cart
+  - shop
+  - product
+  - wallpaper
+  - advert
+  - cookie
+  - tag
+  - author archive
+  - event
+  - news
+  - press release
+  - brochure
+  - tourism
+  - impressum
+  - datenschutz
+  - kontakt
+  - jobs
+  - stellenangebote
+  - veranstaltungen
+  - film
+  - filme
+  - video
+  - videos
+  - presse
+  - newsletter
+  - leichte sprache
+  - gebärdensprache
+  - barrierefreiheit
+  - suche
+
+hard_reject_terms:
+  - impressum
+  - datenschutz
+  - kontakt
+  - jobs
+  - stellenangebote
+  - veranstaltungen
+  - film
+  - filme
+  - video
+  - videos
+  - presse
+  - leichte sprache
+  - gebärdensprache
+  - barrierefreiheit
+  - suche
+
+synonyms:
+  fachwerk:
+    - timber frame
+    - timber-framed
+    - pan de bois
+    - colombage
+  hallenhaus:
+    - low german house
+    - hall house
+  hausforschung:
+    - vernacular architecture
+    - building archaeology
+  bauarchäologie:
+    - building archaeology
+    - archaeology of architecture
+  mittelalterliches haus:
+    - medieval house
+    - medieval domestic architecture

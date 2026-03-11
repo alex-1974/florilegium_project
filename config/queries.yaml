@@ -1,0 +1,41 @@
+terms:
+  - fachwerk
+  - fachwerkbau
+  - hallenhaus
+  - niederdeutsches hallenhaus
+  - hausforschung
+  - bauarchäologie
+  - mittelalterliches haus
+  - mittelalterlicher hausbau
+  - denkmalpflege fachwerk
+  - timber frame
+  - timber-framed building
+  - vernacular architecture
+  - medieval house
+  - medieval domestic architecture
+  - hall house
+  - cruck house
+  - dendrochronology building
+  - pan de bois
+  - maison à colombage
+  - architecture vernaculaire
+
+patterns:
+  - "{term} pdf"
+  - "{term} filetype:pdf"
+  - "{term} research pdf"
+  - "{term} dissertation pdf"
+  - "{term} article pdf"
+  - "{term} report pdf"
+  - "{term} open access pdf"
+  - "site:{domain} {term}"
+  - "site:{domain} {term} pdf"
+  - "site:{domain} {term} filetype:pdf"
+
+languages:
+  - de
+  - en
+  - fr
+
+seed_csv: null
+max_queries: 140
