@@ -1,4 +1,3 @@
-# literature_pipeline/crawler/path_semantics.py
 """Path semantics for scholarly / repository URLs."""
 
 from __future__ import annotations

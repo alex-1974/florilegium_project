@@ -1,4 +1,3 @@
-# literature_pipeline/crawler/scoring.py
 """Hybrid scoring for PDF candidates."""
 
 from __future__ import annotations

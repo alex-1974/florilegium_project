@@ -1,4 +1,3 @@
-# literature_pipeline/crawler/domain_reputation.py
 """Adaptive domain reputation for the focused crawler."""
 
 from __future__ import annotations

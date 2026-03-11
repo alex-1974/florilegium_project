@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 
 """
 STEP 3
@@ -19,8 +20,6 @@ Notes:
 - Goal is to estimate crawler precision and identify noise sources.
 """
 
-from __future__ import annotations
-
 from florilegium.settings import get_paths, ensure_runtime_dirs
 
 import csv
@@ -33,13 +32,6 @@ try:
     import fitz  # PyMuPDF
 except ModuleNotFoundError:
     fitz = None
-
-
-
-ROOT = Path(__file__).resolve().parents[1]
-
-DOWNLOAD_INDEX = ROOT / "data" / "pdf_downloads.csv"
-OUT_AUDIT = ROOT / "data" / "pdf_audit.csv"
 
 
 # --------------------------------------------------------------------
@@ -225,6 +217,9 @@ def count_phrase_hits(text: str, phrases: Iterable[str]) -> tuple[int, list[str]
 
 
 def extract_text(pdf_path: Path, max_pages: int = 5) -> str:
+    if fitz is None:
+        return ""
+
     try:
         doc = fitz.open(pdf_path)
     except Exception:
@@ -264,7 +259,6 @@ def score_text(text: str) -> dict[str, object]:
     neg_n, neg_hits = count_phrase_hits(text, NEGATIVE_PHRASES)
     very_neg_n, very_neg_hits = count_phrase_hits(text, VERY_NEGATIVE_PHRASES)
 
-    # Weighted score: tuned for broader architectural relevance.
     score = (
         strong_n * 5
         + medium_n * 2
@@ -289,13 +283,11 @@ def score_text(text: str) -> dict[str, object]:
 
 
 def classify(score: int, text_length: int, strong_n: int, medium_n: int) -> str:
-    # Very short text often means scan, corrupt extraction, or empty PDF.
     if text_length < 120:
         if strong_n >= 1 or medium_n >= 2:
             return "B_related"
         return "C_irrelevant"
 
-    # Main thresholds
     if score >= 8:
         return "A_relevant"
     if score >= 3:
@@ -303,10 +295,10 @@ def classify(score: int, text_length: int, strong_n: int, medium_n: int) -> str:
     return "C_irrelevant"
 
 
-def load_download_index() -> list[dict[str, str]]:
+def load_download_index(download_index: Path) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
 
-    with DOWNLOAD_INDEX.open("r", encoding="utf-8", newline="") as f:
+    with download_index.open("r", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             if (row.get("status") or "").strip() == "ok":
@@ -319,17 +311,22 @@ def load_download_index() -> list[dict[str, str]]:
 # MAIN
 # --------------------------------------------------------------------
 
-def run() -> None:
-    if not DOWNLOAD_INDEX.exists():
-        raise SystemExit(f"Download index not found: {DOWNLOAD_INDEX}")
+def run() -> int:
+    paths = ensure_runtime_dirs()
 
-    rows = load_download_index()
+    download_index = paths.data_dir / "pdf_downloads.csv"
+    out_audit = paths.data_dir / "pdf_audit.csv"
+
+    if not download_index.exists():
+        raise SystemExit(f"Download index not found: {download_index}")
+
+    rows = load_download_index(download_index)
     print("PDFs to audit:", len(rows))
 
     class_counter: Counter[str] = Counter()
     domain_counter: Counter[str] = Counter()
 
-    with OUT_AUDIT.open("w", encoding="utf-8", newline="") as f:
+    with out_audit.open("w", encoding="utf-8", newline="") as f:
         fieldnames = [
             "pdf_url",
             "domain",
@@ -396,23 +393,22 @@ def run() -> None:
             class_counter[classification] += 1
             domain_counter[row.get("domain", "")] += 1
 
-    print("Audit written:", OUT_AUDIT)
+    print("Audit written:", out_audit)
     print("Classification summary:")
     for key in ("A_relevant", "B_related", "C_irrelevant"):
         print(f"  {key}: {class_counter.get(key, 0)}")
 
-
-if __name__ == "__main__":
-    run()
+    return 0
 
 
 def main() -> int:
     ensure_runtime_dirs()
-    paths = get_paths()
     if fitz is None:
         raise SystemExit(
             "Audit workflow requires PyMuPDF. Install dependency: pip install pymupdf"
         )
-    raise SystemExit(
-        "Audit workflow module imported successfully, but no CLI main() is defined yet."
-    )
+    return run()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# research/literature_pipeline/scripts/step1_crawler.py
 """
 Focused literature crawler for historical architecture / timber-frame research.
 

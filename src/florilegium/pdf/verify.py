@@ -1,4 +1,3 @@
-# literature_pipeline/crawler/pdf_verify.py
 """Robust PDF verifier with repository-aware fallbacks."""
 
 from __future__ import annotations

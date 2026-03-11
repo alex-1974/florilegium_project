@@ -1,4 +1,3 @@
-# literature_pipeline/crawler/html_classifier.py
 
 import re
 from dataclasses import dataclass
