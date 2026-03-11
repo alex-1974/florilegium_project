@@ -1,24 +1,112 @@
-# literature_pipeline
+# Florilegium
 
-## Step 1
+Florilegium is a scientific literature discovery and collection tool.
 
-Collect candidate PDF links, verify them, cache search and HTTP metadata, and write CSV manifests.
+It crawls academic websites, repositories and publication pages,
+discovers PDF documents, downloads them, and performs a first-pass
+relevance audit.
 
-### Run
+The goal is to support large-scale literature research workflows
+in any scientific field.
 
-```bash
-cd literature_pipeline
-python3 scripts/step1_collect_verify_links.py
-```
+Florilegium was originally developed to support historical
+architecture research but is now designed as a general-purpose
+academic literature crawler.
 
-### Config
+---
 
-Edit `config/queries.yaml`.
+# Core Capabilities
 
-### Outputs
+Florilegium currently provides three pipeline steps:
 
-- `data/links_raw.csv`
-- `data/links_verified.csv`
-- `cache/search/`
-- `cache/http/`
-- `logs/step1_summary.json`
+## 1. Crawl
+
+Discover PDF documents by crawling seed websites.
+
+The crawler:
+
+- classifies HTML pages
+- evaluates link context
+- verifies PDF candidates
+- scores PDF candidates
+- records domain reputation
+- produces candidate lists
+
+Output:
+
+var/data/pdf_links.csv
+
+Run:
+
+florilegium crawl
+
+---
+
+## 2. Download
+
+Downloads verified PDF candidates.
+
+Features:
+
+- SHA256 deduplication
+- per-domain storage
+- download logging
+- status tracking
+
+Output:
+
+var/downloads/
+var/data/pdf_downloads.csv
+var/data/pdf_downloads.jsonl
+
+Run:
+
+florilegium download
+
+---
+
+## 3. Audit
+
+Performs a lightweight text analysis of downloaded PDFs.
+
+Purpose:
+
+- estimate crawler precision
+- detect noise sources
+- classify documents
+
+Output:
+
+var/data/pdf_audit.csv
+
+Run:
+
+florilegium audit
+
+---
+
+# Project Structure
+
+florilegium_project/
+
+├─ src/florilegium/
+│  ├─ classify/
+│  ├─ pdf/
+│  ├─ score/
+│  ├─ workflows/
+│  ├─ logging/
+│  ├─ settings.py
+│  └─ cli.py
+│
+├─ config/
+├─ seeds/
+│
+├─ var/
+│  ├─ cache/
+│  ├─ data/
+│  ├─ downloads/
+│  └─ logs/
+│
+└─ workflows/
+
+Runtime data is stored in var/ to keep the source tree clean.
